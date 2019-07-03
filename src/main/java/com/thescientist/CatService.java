@@ -10,17 +10,23 @@ import java.net.URL;
 @Singleton
 public class CatService {
 
-    public String whereIsCat() throws IOException {
-        String uri = "https://micronaut-circuit-breaker-test.appspot.com/whereIsMyCat";
-        HttpURLConnection connection = (HttpURLConnection) new URL(uri).openConnection();
-        connection.setRequestMethod("GET");
-        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        String inputLine;
+    public String whereIsCat() {
         StringBuffer content = new StringBuffer();
-        while ((inputLine = in.readLine()) != null) {
-            content.append(inputLine);
+        try {
+            String uri = "https://micronaut-circuit-breaker-test.appspot.com/whereIsMyCat";
+            HttpURLConnection connection = (HttpURLConnection) new URL(uri).openConnection();
+            connection.setRequestMethod("GET");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        in.close();
 
         return content.toString();
     }

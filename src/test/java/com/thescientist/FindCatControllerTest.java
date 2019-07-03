@@ -1,20 +1,16 @@
 package com.thescientist;
 
-import io.micronaut.context.ApplicationContext;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.client.RxHttpClient;
 import io.micronaut.runtime.server.EmbeddedServer;
 import io.micronaut.test.annotation.MicronautTest;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import javax.inject.Inject;
-
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
