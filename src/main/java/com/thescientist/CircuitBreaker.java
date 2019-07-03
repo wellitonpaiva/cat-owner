@@ -21,7 +21,7 @@ public class CircuitBreaker {
             }
             return (String) f.get();
         }
-        return null;
+        return "API is not working, please try again later.";
     }
 
     public int getCounter() {

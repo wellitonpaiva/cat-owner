@@ -52,7 +52,7 @@ public class CircuitBreakerTest {
     @Test
     void whenStateOpenDontCallAPI() {
         cb.setState(CircuitBreaker.State.OPEN);
-        cb.request(catService::whereIsCat);
+        assertEquals("API is not working, please try again later.", cb.request(catService::whereIsCat));
         verify(catService, times(0)).whereIsCat();
     }
 }
