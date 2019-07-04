@@ -22,6 +22,11 @@ public class FindCatController {
     @Get
     @Produces(MediaType.TEXT_PLAIN)
     public String whereIsCat() {
-        return "Meow!".equals(cb.request(service::whereIsCat)) ? "Kitty Kitty!" : "Chuif chuif";
+        String response = "[" + cb.request(service::whereIsCat) + "]";
+        if("Meow!".equals(response)) {
+            return "Kitty Kitty! " + response;
+        } else {
+            return "Chuif chuif " + response;
+        }
     }
 }
