@@ -12,15 +12,16 @@ import java.io.IOException;
 public class FindCatController {
 
     private CatService service;
+    private CircuitBreaker cb = new CircuitBreaker(20000);
 
     @Inject
     public FindCatController(CatService service) {
         this.service = service;
     }
 
-    @Get("/")
+    @Get
     @Produces(MediaType.TEXT_PLAIN)
-    public String whereIsCat() throws IOException {
-        return "Meow!".equals(service.whereIsCat()) ? "Kitty Kitty!" : "Chuif chuif";
+    public String whereIsCat() {
+        return "Meow!".equals(cb.request(service::whereIsCat)) ? "Kitty Kitty!" : "Chuif chuif";
     }
 }
